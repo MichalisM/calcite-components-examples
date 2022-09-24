@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
-  mode: "production",
+  mode: "development",
   performance: {
     hints: false,
     maxEntrypointSize: 512000,
@@ -34,7 +34,14 @@ module.exports = {
       patterns: [{
         from: '**',
         context: 'node_modules/@esri/calcite-components/dist/calcite/',
-        to: './',
+        to: './calcite/',
+      }]
+    }),
+    new CopyPlugin({
+      patterns: [{
+        from: '**',
+        context: 'node_modules/@arcgis/core/assets/',
+        to: './core/assets',
       }]
     }),
     new HtmlWebpackPlugin({
